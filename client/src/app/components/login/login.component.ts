@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { TicketsService } from '../../services/tickets.service';
+import { Router} from '@angular/router';
 
 @Component({
   moduleId: module.id,
@@ -10,7 +11,7 @@ export class LoginComponent {
   login: string;
   pwd: string;
 
-  constructor(private ticketsService: TicketsService){}
+  constructor(private ticketsService: TicketsService, private router: Router){}
   
   logIn(){
     var logData = {
@@ -18,6 +19,8 @@ export class LoginComponent {
       pwd: this.pwd
     }
     this.ticketsService.logIn(logData).subscribe(res => console.log(res));
+    console.log(this.login);
+    this.router.navigate(['/tickets/', this.login]);
   }
 
 

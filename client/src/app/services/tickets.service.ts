@@ -8,8 +8,8 @@ export class TicketsService{
     console.log('Task Service Initialized...');
   }
 
-  getTickets(){
-    return this.http.get('http://localhost:3000/api/tickets')
+  getTickets(login:string){
+    return this.http.get('http://localhost:3000/api/tickets/' + login)
       .map(res => res.json());
   }
 

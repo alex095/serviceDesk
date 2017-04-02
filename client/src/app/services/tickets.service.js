@@ -16,8 +16,8 @@ var TicketsService = (function () {
         this.http = http;
         console.log('Task Service Initialized...');
     }
-    TicketsService.prototype.getTickets = function () {
-        return this.http.get('http://localhost:3000/api/tickets')
+    TicketsService.prototype.getTickets = function (login) {
+        return this.http.get('http://localhost:3000/api/tickets/' + login)
             .map(function (res) { return res.json(); });
     };
     TicketsService.prototype.logIn = function (logData) {

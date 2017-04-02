@@ -10,11 +10,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var tickets_service_1 = require("../../services/tickets.service");
+var router_1 = require("@angular/router");
 var TicketsComponent = (function () {
-    function TicketsComponent(TicketsService) {
+    function TicketsComponent(TicketsService, route) {
         var _this = this;
         this.TicketsService = TicketsService;
-        this.TicketsService.getTickets()
+        this.route = route;
+        console.log(1111);
+        route.params.subscribe(function (res) { return _this.login = res.login; });
+        console.log(this.login);
+        this.TicketsService.getTickets(this.login)
             .subscribe(function (tickets) {
             _this.tickets = tickets;
         });
@@ -27,7 +32,7 @@ TicketsComponent = __decorate([
         selector: 'tickets',
         templateUrl: 'tickets.component.html',
     }),
-    __metadata("design:paramtypes", [tickets_service_1.TicketsService])
+    __metadata("design:paramtypes", [tickets_service_1.TicketsService, router_1.ActivatedRoute])
 ], TicketsComponent);
 exports.TicketsComponent = TicketsComponent;
 //# sourceMappingURL=tickets.component.js.map
