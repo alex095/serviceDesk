@@ -2,6 +2,8 @@
 <form method="post" (submit)="logIn()">
   <p>Login: <br /> <input type="text" [(ngModel)]="login" name="user_login" /></p>
   <p>Password: <br /> <input type="pwd" [(ngModel)]="pwd" name="user_pwd" /></p>
+  <input type="radio" name="isadmin" [value]=false [(ngModel)]="isadmin" /> Customer
+  <input type="radio" [value]=true name="isadmin" [(ngModel)]="isadmin" />Admin 
   <p><input type="submit" value="Login" name="login_sub" /></p>
-  <router-outlet></router-outlet>
 </form>
+<router-outlet></router-outlet>

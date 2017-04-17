@@ -1,0 +1,19 @@
+<p><a routerLink="/tickets/{{login}}">All tickets</a></p>
+<div *ngFor="let ticket of tickets">
+  <div>
+    <p><b>{{ ticket.title }}</b></p>
+    <p>{{ ticket.text }}</p>
+    <div *ngFor="let answer of ticket.answers">
+      <p><b><i>{{ answer.author }}</i></b> <br /> {{ answer.text }}</p>
+    <div>
+  </div>
+</div>
+<form (submit)="sendAnswer()">
+  <textarea [(ngModel)]="answerText" name="answerText" rows="5" cols="30"></textarea><br />
+  Next status of ticket:
+  <select name="ticketStatus">
+    <option value="opened">opened</option>
+    <option value="closed">closed</option>
+  </select>
+  <p><input type="submit" value="Answer..." /></p>
+</form>

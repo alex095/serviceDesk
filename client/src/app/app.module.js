@@ -11,12 +11,16 @@ var http_1 = require("@angular/http");
 var forms_1 = require("@angular/forms");
 var app_component_1 = require("./app.component");
 var tickets_component_1 = require("./components/tickets/tickets.component");
+var create_component_1 = require("./components/tickets/create.component");
+var answers_component_1 = require("./components/tickets/answers.component");
 var login_component_1 = require("./components/login/login.component");
 var router_1 = require("@angular/router");
 var appRoutes = [
-    { path: '', redirectTo: 'home', pathMatch: 'full' },
+    { path: '', redirectTo: 'login', pathMatch: 'full' },
     { path: 'login', component: login_component_1.LoginComponent },
-    { path: 'tickets/:login', component: tickets_component_1.TicketsComponent }
+    { path: 'create', component: create_component_1.CreateComponent },
+    { path: 'tickets/:login', component: tickets_component_1.TicketsComponent },
+    { path: 'tickets/:login/answer/:id', component: answers_component_1.AnswersComponent }
 ];
 var AppModule = (function () {
     function AppModule() {
@@ -27,7 +31,7 @@ AppModule = __decorate([
     core_1.NgModule({
         imports: [platform_browser_1.BrowserModule, http_1.HttpModule, forms_1.FormsModule,
             router_1.RouterModule.forRoot(appRoutes)],
-        declarations: [app_component_1.AppComponent, tickets_component_1.TicketsComponent, login_component_1.LoginComponent],
+        declarations: [app_component_1.AppComponent, tickets_component_1.TicketsComponent, login_component_1.LoginComponent, create_component_1.CreateComponent, answers_component_1.AnswersComponent],
         bootstrap: [app_component_1.AppComponent]
     })
 ], AppModule);

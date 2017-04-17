@@ -16,10 +16,9 @@ var TicketsComponent = (function () {
         var _this = this;
         this.TicketsService = TicketsService;
         this.route = route;
-        console.log(1111);
-        route.params.subscribe(function (res) { return _this.login = res.login; });
-        console.log(this.login);
-        this.TicketsService.getTickets(this.login)
+        route.params.subscribe(function (res) { return _this.params = res; });
+        this.login = this.params.login;
+        this.TicketsService.getTickets(this.params.login)
             .subscribe(function (tickets) {
             _this.tickets = tickets;
         });

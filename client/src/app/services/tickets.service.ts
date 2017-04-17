@@ -20,4 +20,20 @@ export class TicketsService{
       .map(res => res.json());
   }
 
+  getQueues(){
+    return this.http.get('http://localhost:3000/api/queues/')
+      .map(res => res.json());
+  }
+
+  getAnswers(id: string){
+    return this.http.get('http://localhost:3000/api/answers/' + id)
+      .map(res => res.json());
+  }
+
+  addAnswer(answer: any){
+    var headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post('http://localhost:3000/api/addanswer', JSON.stringify(answer), {headers:headers});
+  }
+
 }

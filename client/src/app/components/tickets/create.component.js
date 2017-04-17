@@ -10,30 +10,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var tickets_service_1 = require("../../services/tickets.service");
-var router_1 = require("@angular/router");
-var LoginComponent = (function () {
-    function LoginComponent(ticketsService, router) {
-        this.ticketsService = ticketsService;
-        this.router = router;
-        this.isadmin = false;
+var CreateComponent = (function () {
+    function CreateComponent(TicketsService) {
+        var _this = this;
+        this.TicketsService = TicketsService;
+        this.TicketsService.getQueues()
+            .subscribe(function (queues) {
+            _this.queues = queues;
+        });
     }
-    LoginComponent.prototype.logIn = function (admin) {
-        var logData = {
-            login: this.login,
-            pwd: this.pwd
-        };
-        this.ticketsService.logIn(logData).subscribe(function (res) { return console.log(res); });
-        this.router.navigate(['/tickets/', this.login]);
-    };
-    return LoginComponent;
+    return CreateComponent;
 }());
-LoginComponent = __decorate([
+CreateComponent = __decorate([
     core_1.Component({
         moduleId: module.id,
-        selector: 'log-in',
-        templateUrl: 'login.component.html',
+        selector: 'test',
+        templateUrl: 'create.component.html',
     }),
-    __metadata("design:paramtypes", [tickets_service_1.TicketsService, router_1.Router])
-], LoginComponent);
-exports.LoginComponent = LoginComponent;
-//# sourceMappingURL=login.component.js.map
+    __metadata("design:paramtypes", [tickets_service_1.TicketsService])
+], CreateComponent);
+exports.CreateComponent = CreateComponent;
+//# sourceMappingURL=create.component.js.map

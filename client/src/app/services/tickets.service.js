@@ -26,6 +26,19 @@ var TicketsService = (function () {
         return this.http.post('http://localhost:3000/api/login', JSON.stringify(logData), { headers: headers })
             .map(function (res) { return res.json(); });
     };
+    TicketsService.prototype.getQueues = function () {
+        return this.http.get('http://localhost:3000/api/queues/')
+            .map(function (res) { return res.json(); });
+    };
+    TicketsService.prototype.getAnswers = function (id) {
+        return this.http.get('http://localhost:3000/api/answers/' + id)
+            .map(function (res) { return res.json(); });
+    };
+    TicketsService.prototype.addAnswer = function (answer) {
+        var headers = new http_1.Headers();
+        headers.append('Content-Type', 'application/json');
+        return this.http.post('http://localhost:3000/api/addanswer', JSON.stringify(answer), { headers: headers });
+    };
     return TicketsService;
 }());
 TicketsService = __decorate([

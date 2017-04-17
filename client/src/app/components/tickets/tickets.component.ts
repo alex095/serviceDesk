@@ -12,15 +12,15 @@ import { Observable } from 'rxjs/Observable';
 export class TicketsComponent  {
 
   tickets: Ticket[];
+  params: any;
   login: string;
 
-  constructor(private TicketsService: TicketsService, private route: ActivatedRoute,){
-    console.log(1111);
+  constructor(private TicketsService: TicketsService, private route: ActivatedRoute){
     route.params.subscribe(
-      res => this.login = res.login
+      res => this.params = res
     );
-    console.log(this.login);
-    this.TicketsService.getTickets(this.login)
+    this.login = this.params.login;
+    this.TicketsService.getTickets(this.params.login)
       .subscribe(tickets => {
         this.tickets = tickets;
       });
