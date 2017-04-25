@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { TicketsService } from '../../services/tickets.service';
-import { Ticket } from '../../../Ticket';
+import { Ticket } from '../../classes/Ticket';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 

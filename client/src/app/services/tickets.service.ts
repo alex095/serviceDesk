@@ -13,10 +13,29 @@ export class TicketsService{
       .map(res => res.json());
   }
 
+  getAdmTickets(queueId:string){
+    return this.http.get('http://localhost:3000/api/admtickets/' + queueId)
+      .map(res => res.json());
+  }
+
+  createTicket(ticket: any){
+    var headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post('http://localhost:3000/api/createticket', JSON.stringify(ticket), {headers:headers})
+      .map(res => res.json());
+  }
+
   logIn(logData: Object){
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
     return this.http.post('http://localhost:3000/api/login', JSON.stringify(logData), {headers:headers})
+      .map(res => res.json());
+  }
+
+  logInAdm(logData: Object){
+    var headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post('http://localhost:3000/api/loginadm', JSON.stringify(logData), {headers:headers})
       .map(res => res.json());
   }
 

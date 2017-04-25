@@ -1,0 +1,8 @@
+Hello {{login}} |  
+<a routerLink="">Logout</a>
+<h3>Tickets in your queue:</h3>
+<div *ngFor="let ticket of tickets">
+  <div>
+    <p><a routerLink="answer/{{ticket._id}}">{{ ticket.title }} (<i>{{ ticket.status }}</i>) </a> <br /> {{ ticket.text }}</p>
+  </div>
+</div>

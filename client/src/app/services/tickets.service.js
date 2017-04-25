@@ -20,10 +20,26 @@ var TicketsService = (function () {
         return this.http.get('http://localhost:3000/api/tickets/' + login)
             .map(function (res) { return res.json(); });
     };
+    TicketsService.prototype.getAdmTickets = function (queueId) {
+        return this.http.get('http://localhost:3000/api/admtickets/' + queueId)
+            .map(function (res) { return res.json(); });
+    };
+    TicketsService.prototype.createTicket = function (ticket) {
+        var headers = new http_1.Headers();
+        headers.append('Content-Type', 'application/json');
+        return this.http.post('http://localhost:3000/api/createticket', JSON.stringify(ticket), { headers: headers })
+            .map(function (res) { return res.json(); });
+    };
     TicketsService.prototype.logIn = function (logData) {
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');
         return this.http.post('http://localhost:3000/api/login', JSON.stringify(logData), { headers: headers })
+            .map(function (res) { return res.json(); });
+    };
+    TicketsService.prototype.logInAdm = function (logData) {
+        var headers = new http_1.Headers();
+        headers.append('Content-Type', 'application/json');
+        return this.http.post('http://localhost:3000/api/loginadm', JSON.stringify(logData), { headers: headers })
             .map(function (res) { return res.json(); });
     };
     TicketsService.prototype.getQueues = function () {

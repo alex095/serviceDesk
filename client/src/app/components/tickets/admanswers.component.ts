@@ -4,20 +4,23 @@ import { TicketsService } from '../../services/tickets.service';
 
 @Component({
   moduleId: module.id,
-  selector: 'answer',
-  templateUrl: 'answers.component.html'
+  selector: 'admanswer',
+  templateUrl: 'admanswers.component.html'
 })
 
-export class AnswersComponent {
+export class AdmAnswersComponent {
 
     tickets: any[];
     id: string;
     login: string;
     answerText: string;
+    queue: string;
     nextStatus: string = 'opened';
+
     
     constructor(private router: Router, private route: ActivatedRoute, private TicketsService: TicketsService) {
       this.login = this.route.snapshot.params['login'];
+      this.queue = this.route.snapshot.params['queue'];
       this.getAnswers(this.route.snapshot.params['id']);
     }
 

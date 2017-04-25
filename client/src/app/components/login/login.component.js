@@ -17,13 +17,42 @@ var LoginComponent = (function () {
         this.router = router;
         this.isadmin = false;
     }
-    LoginComponent.prototype.logIn = function (admin) {
+    LoginComponent.prototype.logIn = function () {
         var logData = {
             login: this.login,
             pwd: this.pwd
         };
-        this.ticketsService.logIn(logData).subscribe(function (res) { return console.log(res); });
-        this.router.navigate(['/tickets/', this.login]);
+        if (this.isadmin) {
+            this.adminLogin(logData);
+        }
+        else {
+            this.userLogin(logData);
+        }
+    };
+    LoginComponent.prototype.userLogin = function (logData) {
+        var _this = this;
+        this.ticketsService.logIn(logData).subscribe(function (res) {
+            if (!res || _this.pwd === undefined) {
+                _this.error = 'Invalid login or password';
+                return;
+            }
+            else {
+                _this.router.navigate(['/tickets/', _this.login]);
+            }
+        });
+    };
+    LoginComponent.prototype.adminLogin = function (logData) {
+        var _this = this;
+        this.ticketsService.logInAdm(logData).subscribe(function (res) {
+            if (!res || _this.pwd === undefined) {
+                _this.error = 'Invalid login or password';
+                return;
+            }
+            else {
+                console.log(res);
+                _this.router.navigate(['/admtickets/', res.login, res.queue]);
+            }
+        });
     };
     return LoginComponent;
 }());

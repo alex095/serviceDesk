@@ -11,16 +11,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var tickets_service_1 = require("../../services/tickets.service");
-var AnswersComponent = (function () {
-    function AnswersComponent(router, route, TicketsService) {
+var AdmAnswersComponent = (function () {
+    function AdmAnswersComponent(router, route, TicketsService) {
         this.router = router;
         this.route = route;
         this.TicketsService = TicketsService;
         this.nextStatus = 'opened';
         this.login = this.route.snapshot.params['login'];
+        this.queue = this.route.snapshot.params['queue'];
         this.getAnswers(this.route.snapshot.params['id']);
     }
-    AnswersComponent.prototype.getAnswers = function (id) {
+    AdmAnswersComponent.prototype.getAnswers = function (id) {
         var _this = this;
         this.TicketsService.getAnswers(id)
             .subscribe(function (tickets) {
@@ -28,7 +29,7 @@ var AnswersComponent = (function () {
             _this.id = id;
         });
     };
-    AnswersComponent.prototype.sendAnswer = function () {
+    AdmAnswersComponent.prototype.sendAnswer = function () {
         var _this = this;
         var newAnswer = {
             nextStatus: this.nextStatus,
@@ -43,15 +44,15 @@ var AnswersComponent = (function () {
             _this.tickets[0].status = _this.nextStatus;
         });
     };
-    return AnswersComponent;
+    return AdmAnswersComponent;
 }());
-AnswersComponent = __decorate([
+AdmAnswersComponent = __decorate([
     core_1.Component({
         moduleId: module.id,
-        selector: 'answer',
-        templateUrl: 'answers.component.html'
+        selector: 'admanswer',
+        templateUrl: 'admanswers.component.html'
     }),
     __metadata("design:paramtypes", [router_1.Router, router_1.ActivatedRoute, tickets_service_1.TicketsService])
-], AnswersComponent);
-exports.AnswersComponent = AnswersComponent;
-//# sourceMappingURL=answers.component.js.map
+], AdmAnswersComponent);
+exports.AdmAnswersComponent = AdmAnswersComponent;
+//# sourceMappingURL=admanswers.component.js.map

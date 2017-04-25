@@ -1,6 +1,6 @@
 <h4>Please, enter your login and password.</h4>
 <form method="post" (submit)="logIn()">
-  <p>Login: <br /> <input type="text" [(ngModel)]="login" name="user_login" /></p>
+  <p>Login: <br /> <input type="text" [(ngModel)]="login" name="user_login" /> <span style="color: red">{{error}}</span> </p>
   <p>Password: <br /> <input type="pwd" [(ngModel)]="pwd" name="user_pwd" /></p>
   <input type="radio" name="isadmin" [value]=false [(ngModel)]="isadmin" /> Customer
   <input type="radio" [value]=true name="isadmin" [(ngModel)]="isadmin" />Admin 

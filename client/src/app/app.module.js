@@ -13,14 +13,18 @@ var app_component_1 = require("./app.component");
 var tickets_component_1 = require("./components/tickets/tickets.component");
 var create_component_1 = require("./components/tickets/create.component");
 var answers_component_1 = require("./components/tickets/answers.component");
+var admanswers_component_1 = require("./components/tickets/admanswers.component");
+var admtickets_component_1 = require("./components/tickets/admtickets.component");
 var login_component_1 = require("./components/login/login.component");
 var router_1 = require("@angular/router");
 var appRoutes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
     { path: 'login', component: login_component_1.LoginComponent },
-    { path: 'create', component: create_component_1.CreateComponent },
+    { path: 'tickets/:login/create', component: create_component_1.CreateComponent },
     { path: 'tickets/:login', component: tickets_component_1.TicketsComponent },
-    { path: 'tickets/:login/answer/:id', component: answers_component_1.AnswersComponent }
+    { path: 'tickets/:login/answer/:id', component: answers_component_1.AnswersComponent },
+    { path: 'admtickets/:login/:queue', component: admtickets_component_1.AdmTicketsComponent },
+    { path: 'admtickets/:login/:queue/answer/:id', component: admanswers_component_1.AdmAnswersComponent }
 ];
 var AppModule = (function () {
     function AppModule() {
@@ -31,7 +35,7 @@ AppModule = __decorate([
     core_1.NgModule({
         imports: [platform_browser_1.BrowserModule, http_1.HttpModule, forms_1.FormsModule,
             router_1.RouterModule.forRoot(appRoutes)],
-        declarations: [app_component_1.AppComponent, tickets_component_1.TicketsComponent, login_component_1.LoginComponent, create_component_1.CreateComponent, answers_component_1.AnswersComponent],
+        declarations: [app_component_1.AppComponent, tickets_component_1.TicketsComponent, login_component_1.LoginComponent, create_component_1.CreateComponent, answers_component_1.AnswersComponent, admtickets_component_1.AdmTicketsComponent, admanswers_component_1.AdmAnswersComponent],
         bootstrap: [app_component_1.AppComponent]
     })
 ], AppModule);

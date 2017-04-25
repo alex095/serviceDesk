@@ -1,7 +1,17 @@
-<form>
-  <p><input type="text" name="ticket_title" /></p>
-  <p><textarea></textarea></p>
-  <select>
-    <option *ngFor="let queue of queues">{{queue.depName}}</option>
+<a routerLink="/tickets/{{ticket.author_login}}">< Back</a>
+<form (ngSubmit)="createTicket()">
+  <p>Title<br /><input type="text" [(ngModel)]="ticket.title" size="40" name="ticketTitle" /></p>
+  <p>Text<br /><textarea rows="10" cols="41" [(ngModel)]="ticket.text" name="ticketText"></textarea></p>
+  Queue<br />
+  <select [(ngModel)]="ticket.queue_id" name="ticketQueue">
+    <option *ngFor="let queue of queues" value="{{queue._id}}">{{queue.depName}}</option>
   </select>
+  <p>Priority<br />
+    <select [(ngModel)]="ticket.priority" name="ticketPriority">
+      <option value="low">low</option>
+      <option value="medium">medium</option>
+      <option value="high">high</option>
+    </select> 
+  </p>
+  <p><input type="submit" value="Create" /></p>
 </form>
