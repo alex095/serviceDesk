@@ -11,24 +11,29 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var tickets_service_1 = require("../../services/tickets.service");
 var router_1 = require("@angular/router");
-var AdmTicketsComponent = (function () {
-    function AdmTicketsComponent(TicketsService, route) {
+var TestComponent = (function () {
+    function TestComponent(TicketsService, route) {
         var _this = this;
         this.TicketsService = TicketsService;
         this.route = route;
-        route.params.subscribe(function (res) { return _this.params = res; });
-        this.queue = this.params.queue;
-        this.login = this.params.login;
+        this.queue = route.snapshot.parent.params['queue'];
+        this.login = route.snapshot.parent.params['login'];
+        route.params.subscribe(function (res) {
+            _this.TicketsService.getAdmTickets(_this.queue, res.status)
+                .subscribe(function (tickets) {
+                _this.tickets = tickets;
+            });
+        });
     }
-    return AdmTicketsComponent;
+    return TestComponent;
 }());
-AdmTicketsComponent = __decorate([
+TestComponent = __decorate([
     core_1.Component({
         moduleId: module.id,
-        selector: 'admtickets',
-        templateUrl: 'admtickets.component.html',
+        selector: 'test',
+        template: "<div *ngFor=\"let ticket of tickets\">\n  <div>\n    <p><a routerLink=\"../answer/{{ticket._id}}\">{{ ticket.title }} (<i>{{ ticket.status }}</i>) </a> <br /> {{ ticket.text }}</p>\n  </div>\n</div>"
     }),
     __metadata("design:paramtypes", [tickets_service_1.TicketsService, router_1.ActivatedRoute])
-], AdmTicketsComponent);
-exports.AdmTicketsComponent = AdmTicketsComponent;
-//# sourceMappingURL=admtickets.component.js.map
+], TestComponent);
+exports.TestComponent = TestComponent;
+//# sourceMappingURL=test.component.js.map

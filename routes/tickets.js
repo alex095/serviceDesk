@@ -14,14 +14,14 @@ router.get('/tickets/:login', function(req, res, next){
     });
 });
 
-router.get('/admtickets/:queue', function(req, res, next){
+router.get('/admtickets/:queue/:status', function(req, res, next){
     var queue = req.params.queue;
-    console.log(queue);
-    db.tickets.find({queue_id: db.ObjectId(queue)}, function(err, tickets){
+    var status = req.params.status;
+    db.tickets.find({queue_id: db.ObjectId(queue), status: status}, function(err, tickets){
         if(err){
             res.send(err);
         }else{
-            console.log(tickets);
+            
             res.json(tickets);
         }
     });

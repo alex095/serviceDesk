@@ -46,7 +46,7 @@ export class LoginComponent {
         return;
       }else{
         console.log(res);
-        this.router.navigate(['/admtickets/', res.login, res.queue]);
+        this.router.navigate(['/admtickets/', res.login, res.queue, 'opened']);
       }
     });
   }

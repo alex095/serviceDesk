@@ -11,7 +11,6 @@ import { Observable } from 'rxjs/Observable';
 })
 export class AdmTicketsComponent  {
 
-  tickets: Ticket[];
   params: any;
   queue: string;
   login: string;
@@ -22,9 +21,5 @@ export class AdmTicketsComponent  {
     );
     this.queue = this.params.queue;
     this.login = this.params.login;
-    this.TicketsService.getAdmTickets(this.params.queue)
-      .subscribe(tickets => {
-        this.tickets = tickets;
-      });
   }
 }

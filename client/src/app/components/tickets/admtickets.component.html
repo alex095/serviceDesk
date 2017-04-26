@@ -1,8 +1,13 @@
 Hello {{login}} |  
 <a routerLink="">Logout</a>
 <h3>Tickets in your queue:</h3>
+<a routerLink="opened">Opened tickets</a>
+<a routerLink="closed">Closed tickets</a>
+<router-outlet></router-outlet>
+<!--
 <div *ngFor="let ticket of tickets">
   <div>
     <p><a routerLink="answer/{{ticket._id}}">{{ ticket.title }} (<i>{{ ticket.status }}</i>) </a> <br /> {{ ticket.text }}</p>
   </div>
 </div>
+-->

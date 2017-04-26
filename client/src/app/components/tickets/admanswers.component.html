@@ -1,4 +1,4 @@
-<p><a routerLink="/admtickets/{{login}}/{{queue}}">All tickets</a></p>
+<p><a routerLink="/admtickets/{{login}}/{{queue}}/opened">All tickets</a></p>
 <div *ngFor="let ticket of tickets">
   <div>
     <p><b>{{ ticket.title }}</b> <i>({{ ticket.status }})</i></p>

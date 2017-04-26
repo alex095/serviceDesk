@@ -50,7 +50,7 @@ var LoginComponent = (function () {
             }
             else {
                 console.log(res);
-                _this.router.navigate(['/admtickets/', res.login, res.queue]);
+                _this.router.navigate(['/admtickets/', res.login, res.queue, 'opened']);
             }
         });
     };

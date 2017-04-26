@@ -13,8 +13,8 @@ export class TicketsService{
       .map(res => res.json());
   }
 
-  getAdmTickets(queueId:string){
-    return this.http.get('http://localhost:3000/api/admtickets/' + queueId)
+  getAdmTickets(queueId:string, status: string){
+    return this.http.get('http://localhost:3000/api/admtickets/' + queueId + '/' + status)
       .map(res => res.json());
   }
 
