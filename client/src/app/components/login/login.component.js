@@ -37,7 +37,7 @@ var LoginComponent = (function () {
                 return;
             }
             else {
-                _this.router.navigate(['/tickets/', _this.login]);
+                _this.router.navigate(['/tickets/', _this.login, 'opened']);
             }
         });
     };

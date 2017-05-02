@@ -16,12 +16,16 @@ var TicketsService = (function () {
         this.http = http;
         console.log('Task Service Initialized...');
     }
-    TicketsService.prototype.getTickets = function (login) {
-        return this.http.get('http://localhost:3000/api/tickets/' + login)
+    TicketsService.prototype.getTickets = function (login, status) {
+        return this.http.get('http://localhost:3000/api/tickets/' + login + '/' + status)
             .map(function (res) { return res.json(); });
     };
     TicketsService.prototype.getAdmTickets = function (queueId, status) {
         return this.http.get('http://localhost:3000/api/admtickets/' + queueId + '/' + status)
+            .map(function (res) { return res.json(); });
+    };
+    TicketsService.prototype.getAdmins = function () {
+        return this.http.get('http://localhost:3000/api/getadmins/')
             .map(function (res) { return res.json(); });
     };
     TicketsService.prototype.createTicket = function (ticket) {

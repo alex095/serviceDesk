@@ -8,13 +8,18 @@ export class TicketsService{
     console.log('Task Service Initialized...');
   }
 
-  getTickets(login:string){
-    return this.http.get('http://localhost:3000/api/tickets/' + login)
+  getTickets(login:string, status: string){
+    return this.http.get('http://localhost:3000/api/tickets/' + login + '/' + status)
       .map(res => res.json());
   }
 
   getAdmTickets(queueId:string, status: string){
     return this.http.get('http://localhost:3000/api/admtickets/' + queueId + '/' + status)
+      .map(res => res.json());
+  }
+
+  getAdmins(){
+    return this.http.get('http://localhost:3000/api/getadmins/')
       .map(res => res.json());
   }
 

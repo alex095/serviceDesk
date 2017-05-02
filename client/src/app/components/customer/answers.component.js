@@ -17,6 +17,8 @@ var AnswersComponent = (function () {
         this.route = route;
         this.TicketsService = TicketsService;
         this.nextStatus = 'opened';
+        this.admins = [];
+        this.checkAdmin();
         this.login = this.route.snapshot.params['login'];
         this.getAnswers(this.route.snapshot.params['id']);
     }
@@ -42,6 +44,24 @@ var AnswersComponent = (function () {
             _this.answerText = null;
             _this.tickets[0].status = _this.nextStatus;
         });
+    };
+    AnswersComponent.prototype.checkAdmin = function () {
+        var _this = this;
+        this.TicketsService.getAdmins().
+            subscribe(function (admins) {
+            for (var admin in admins) {
+                _this.admins.push(admins[admin].login);
+            }
+        });
+    };
+    AnswersComponent.prototype.answerStyle = function (author) {
+        for (var _i = 0, _a = this.admins; _i < _a.length; _i++) {
+            var admin = _a[_i];
+            if (admin == author) {
+                return 'blue';
+            }
+        }
+        return 'green';
     };
     return AnswersComponent;
 }());

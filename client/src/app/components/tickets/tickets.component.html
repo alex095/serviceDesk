@@ -1,9 +1,0 @@
-Hello {{login}} | 
-<a routerLink="create">Create ticket</a> | 
-<a routerLink="">Logout</a>
-<h3>Your tickets:</h3>
-<div *ngFor="let ticket of tickets">
-  <div>
-    <p><a routerLink="answer/{{ticket._id}}">{{ ticket.title }} (<i>{{ ticket.status }}</i>) </a> <br /> {{ ticket.text }}</p>
-  </div>
-</div>

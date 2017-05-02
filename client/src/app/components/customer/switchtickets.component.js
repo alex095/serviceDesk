@@ -16,11 +16,10 @@ var SwitchTicketsComponent = (function () {
         var _this = this;
         this.TicketsService = TicketsService;
         this.route = route;
-        this.queue = route.snapshot.parent.params['queue'];
         this.login = route.snapshot.parent.params['login'];
         route.params.subscribe(function (res) {
             _this.params = res;
-            _this.TicketsService.getAdmTickets(_this.queue, _this.params.status)
+            _this.TicketsService.getTickets(_this.login, _this.params.status)
                 .subscribe(function (tickets) {
                 _this.tickets = tickets;
             });
@@ -32,7 +31,7 @@ SwitchTicketsComponent = __decorate([
     core_1.Component({
         moduleId: module.id,
         selector: 'test',
-        template: "<div *ngFor=\"let ticket of tickets\">\n  <div>\n    <p><a routerLink=\"../answer/{{ticket._id}}\">{{ ticket.title }} (<i>{{ ticket.status }}</i>) </a> <br /> {{ ticket.text }}</p>\n  </div>\n</div>"
+        template: "<div *ngFor=\"let ticket of tickets\">\n              <div>\n                <p><a routerLink=\"../answer/{{ticket._id}}\">{{ ticket.title }} (<i>{{ ticket.status }}</i>) </a> <br /> {{ ticket.text }}</p>\n              </div>\n            </div>"
     }),
     __metadata("design:paramtypes", [tickets_service_1.TicketsService, router_1.ActivatedRoute])
 ], SwitchTicketsComponent);

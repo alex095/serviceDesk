@@ -3,9 +3,10 @@ var router = express.Router();
 var mongojs = require('mongojs');
 var db = mongojs('mongodb://alex:123456@ds143990.mlab.com:43990/sd', ['tickets', 'queues', 'users', 'admins']);
 
-router.get('/tickets/:login', function(req, res, next){
+router.get('/tickets/:login/:status', function(req, res, next){
     var login = req.params.login;
-    db.tickets.find({author_login: login}, function(err, tickets){
+    var status = req.params.status;
+    db.tickets.find({author_login: login, status: status}, function(err, tickets){
         if(err){
             res.send(err);
         }else{
@@ -30,7 +31,6 @@ router.get('/admtickets/:queue/:status', function(req, res, next){
 router.post('/createticket', function(req, res, next){
     var ticket = req.body;
     ticket.queue_id = db.ObjectId(ticket.queue_id);
-    console.log(ticket.queue_id);
     db.tickets.save(ticket, function(err, ticket){
         if(err){
             res.send(err);
@@ -42,7 +42,6 @@ router.post('/createticket', function(req, res, next){
 
 router.get('/answers/:id', function(req, res, next){
     var id = req.params.id;
-    console.log(id);
     db.tickets.find({_id: db.ObjectId(id)}, function(err, tickets){
         if(err){
             res.send(err);
@@ -83,9 +82,18 @@ router.get('/queues', function(req, res, next){
     });
 });
 
+router.get('/getadmins', function(req, res, next){
+    db.admins.find(function(err, admins){
+        if(err){
+            res.send(err);
+        }else{
+            res.json(admins);
+        }
+    });
+});
+
 router.post('/login', function(req, res, next){
     var loginData = req.body;
-    console.log(loginData);
     db.users.findOne({$and: [{login: loginData.login}, {pwd: loginData.pwd}]}, function(err, user){
         if(err){
             res.send(err);
@@ -105,26 +113,14 @@ router.post('/loginadm', function(req, res, next){
         if(err){
             res.send(err);
         }else{
-            console.log(user);
             if(user !== null){
                 res.json(user);
             }else{
-                console.log(user);
-                res.json(user);
+                res.json(false);
             }
         }
     });
 });
 
-
-router.get('/tasks/:id', function(req, res, next){
-    db.tasksCollection.findOne({_id: mongojs.ObjectId(req.params.id)}, function(err, task){
-        if(err){
-            res.send(err);
-        }else{
-            res.json(task);
-        }
-    });
-});
 
 module.exports = router;

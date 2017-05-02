@@ -11,29 +11,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var tickets_service_1 = require("../../services/tickets.service");
 var router_1 = require("@angular/router");
-var TestComponent = (function () {
-    function TestComponent(TicketsService, route) {
+var TicketsComponent = (function () {
+    function TicketsComponent(TicketsService, route) {
         var _this = this;
         this.TicketsService = TicketsService;
         this.route = route;
-        this.queue = route.snapshot.parent.params['queue'];
-        this.login = route.snapshot.parent.params['login'];
-        route.params.subscribe(function (res) {
-            _this.TicketsService.getAdmTickets(_this.queue, res.status)
-                .subscribe(function (tickets) {
-                _this.tickets = tickets;
-            });
-        });
+        route.params.subscribe(function (res) { return _this.params = res; });
+        this.login = this.params.login;
+        /*this.TicketsService.getTickets(this.params.login)
+          .subscribe(tickets => {
+            this.tickets = tickets;
+          });*/
     }
-    return TestComponent;
+    return TicketsComponent;
 }());
-TestComponent = __decorate([
+TicketsComponent = __decorate([
     core_1.Component({
         moduleId: module.id,
-        selector: 'test',
-        template: "<div *ngFor=\"let ticket of tickets\">\n  <div>\n    <p><a routerLink=\"../answer/{{ticket._id}}\">{{ ticket.title }} (<i>{{ ticket.status }}</i>) </a> <br /> {{ ticket.text }}</p>\n  </div>\n</div>"
+        selector: 'tickets',
+        templateUrl: 'tickets.component.html',
     }),
     __metadata("design:paramtypes", [tickets_service_1.TicketsService, router_1.ActivatedRoute])
-], TestComponent);
-exports.TestComponent = TestComponent;
-//# sourceMappingURL=test.component.js.map
+], TicketsComponent);
+exports.TicketsComponent = TicketsComponent;
+//# sourceMappingURL=tickets.component.js.map

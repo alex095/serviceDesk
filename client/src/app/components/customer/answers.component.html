@@ -1,11 +1,10 @@
-<p><a routerLink="/admtickets/{{login}}/{{queue}}/opened">All tickets</a></p>
+<p><a routerLink="/tickets/{{login}}/opened">All tickets</a></p>
 <div *ngFor="let ticket of tickets">
   <div>
     <p><b>{{ ticket.title }}</b> <i>({{ ticket.status }})</i></p>
     <p>{{ ticket.text }}</p>
-    <hr />
     <div *ngFor="let answer of ticket.answers">
-      <p><b><i>{{ answer.author }}</i></b> <br /> {{ answer.text }}</p>
+      <p [style.color] = answerStyle(answer.author)><b><i>{{ answer.author }}</i></b> <br /> {{ answer.text }}</p>
     <div>
   </div>
 </div>

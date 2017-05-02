@@ -15,8 +15,10 @@ export class AnswersComponent {
     login: string;
     answerText: string;
     nextStatus: string = 'opened';
+    admins: string[] = [];
     
     constructor(private router: Router, private route: ActivatedRoute, private TicketsService: TicketsService) {
+      this.checkAdmin();
       this.login = this.route.snapshot.params['login'];
       this.getAnswers(this.route.snapshot.params['id']);
     }
@@ -47,4 +49,21 @@ export class AnswersComponent {
         
     }
 
- }
+    checkAdmin(){
+      this.TicketsService.getAdmins().
+        subscribe(admins => {
+          for(let admin in admins){
+            this.admins.push(admins[admin].login);
+          }
+        });
+    }
+
+    answerStyle(author: string){
+      for(let admin of this.admins){
+        if(admin == author){
+          return 'blue';
+        }
+      }
+      return 'green';      
+    }
+}

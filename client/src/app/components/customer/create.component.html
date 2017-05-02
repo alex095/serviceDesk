@@ -1,4 +1,4 @@
-<a routerLink="/tickets/{{ticket.author_login}}">< Back</a>
+<a routerLink="/tickets/{{ticket.author_login}}/opened">< Back</a>
 <form (ngSubmit)="createTicket()">
   <p>Title<br /><input type="text" [(ngModel)]="ticket.title" size="40" name="ticketTitle" /></p>
   <p>Text<br /><textarea rows="10" cols="41" [(ngModel)]="ticket.text" name="ticketText"></textarea></p>

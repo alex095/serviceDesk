@@ -8,12 +8,12 @@ import { Observable } from 'rxjs/Observable';
   moduleId: module.id,
   selector: 'test',
   template: `<div *ngFor="let ticket of tickets">
-  <div>
-    <p><a routerLink="../answer/{{ticket._id}}">{{ ticket.title }} (<i>{{ ticket.status }}</i>) </a> <br /> {{ ticket.text }}</p>
-  </div>
-</div>`
+              <div>
+                <p><a routerLink="../answer/{{ticket._id}}">{{ ticket.title }} (<i>{{ ticket.status }}</i>) </a> <br /> {{ ticket.text }}</p>
+              </div>
+            </div>`
 })
-export class SwitchTicketsComponent  {
+export class SwitchTicketsComponent {
 
   tickets: Ticket[];
   params: any;
@@ -22,17 +22,15 @@ export class SwitchTicketsComponent  {
   status: string;
 
   constructor(private TicketsService: TicketsService, private route: ActivatedRoute){
-    this.queue = route.snapshot.parent.params['queue'];
     this.login = route.snapshot.parent.params['login'];
     route.params.subscribe(
       res => {
         this.params = res;
-        this.TicketsService.getAdmTickets(this.queue, this.params.status)
+        this.TicketsService.getTickets(this.login, this.params.status)
           .subscribe(tickets => {
             this.tickets = tickets;
-      });
+        });
       }
     );
-    
   }
 }

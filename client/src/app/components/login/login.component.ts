@@ -33,7 +33,7 @@ export class LoginComponent {
         this.error = 'Invalid login or password';
         return;
       }else{
-        this.router.navigate(['/tickets/', this.login]);
+        this.router.navigate(['/tickets/', this.login, 'opened']);
       }
     });
     

@@ -20,9 +20,9 @@ export class TicketsComponent  {
       res => this.params = res
     );
     this.login = this.params.login;
-    this.TicketsService.getTickets(this.params.login)
+    /*this.TicketsService.getTickets(this.params.login)
       .subscribe(tickets => {
         this.tickets = tickets;
-      });
+      });*/
   }
 }
